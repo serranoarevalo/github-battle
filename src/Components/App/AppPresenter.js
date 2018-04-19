@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import Player from "Components/Player";
 
 const AppPresenter = ({
   playerOne,
@@ -11,7 +12,10 @@ const AppPresenter = ({
   <React.Fragment>
     <h1>Github Battle</h1>
     {playing ? (
-      "playing"
+      <React.Fragment>
+        <Player player={playerOne} />
+        <Player player={playerTwo} />
+      </React.Fragment>
     ) : (
       <React.Fragment>
         <input
