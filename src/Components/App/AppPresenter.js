@@ -17,7 +17,7 @@ const AppPresenter = ({
         <Player player={playerTwo} />
       </React.Fragment>
     ) : (
-      <React.Fragment>
+      <form onSubmit={startPlaying}>
         <input
           type="text"
           value={playerOne}
@@ -32,13 +32,13 @@ const AppPresenter = ({
           onChange={handleInput}
           name="playerTwo"
         />
-        <button
+        <input
+          type="submit"
           disabled={playerOne === "" || playerTwo === ""}
           onClick={startPlaying}
-        >
-          Play!
-        </button>
-      </React.Fragment>
+          valiue="play"
+        />
+      </form>
     )}
   </React.Fragment>
 );
