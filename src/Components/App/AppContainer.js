@@ -6,12 +6,17 @@ import AppPresenter from "./AppPresenter";
 class AppContainer extends Component {
   state = {
     playerOne: "",
-    playerTwo: ""
+    playerTwo: "",
+    playing: false
   };
   render() {
     return (
       <ApolloProvider client={client}>
-        <AppPresenter {...this.state} handleInput={this._handleInput} />
+        <AppPresenter
+          {...this.state}
+          handleInput={this._handleInput}
+          startPlaying={this._startPlaying}
+        />
       </ApolloProvider>
     );
   }
@@ -21,6 +26,11 @@ class AppContainer extends Component {
     } = e;
     this.setState({
       [name]: value
+    });
+  };
+  _startPlaying = () => {
+    this.setState({
+      playing: true
     });
   };
 }
