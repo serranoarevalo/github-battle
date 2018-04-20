@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import { Mutation } from "react-apollo";
 import { calculateWinner } from "mutations";
 import Player from "Components/Player";
+import Fight from "Components/Fight";
 import styled, { injectGlobal } from "styled-components";
 import reset from "styled-reset";
 
@@ -126,17 +127,6 @@ const AppPresenter = ({
           <Player player={playerOne} />
           <Player player={playerTwo} />
         </Players>
-        <Mutation mutation={calculateWinner()}>
-          {calculateWinner => (
-            <button
-              onClick={() =>
-                calculateWinner({ variables: { playerOne, playerTwo } })
-              }
-            >
-              Fight!
-            </button>
-          )}
-        </Mutation>
       </PlayersContainer>
     ) : (
       <Form onSubmit={startPlaying}>

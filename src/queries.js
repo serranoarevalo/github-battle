@@ -13,15 +13,15 @@ const getByUsername = username => gql`
       repositories {
         totalCount
       }
+      score @client
     }
-    winner @client
   }
 `;
 
-const getScore = player => gql`
-{
-  ${player} @client
-} 
+const getWinner = () => gql`
+  {
+    winner
+  }
 `;
 
-export { getByUsername, getScore };
+export { getByUsername, getWinner };

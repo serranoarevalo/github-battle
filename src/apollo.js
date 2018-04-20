@@ -1,5 +1,4 @@
 import ApolloClient from "apollo-boost";
-import { getScore } from "queries";
 import { GITHUB_API_TOKEN } from "./keys";
 
 const client = new ApolloClient({
@@ -12,30 +11,10 @@ const client = new ApolloClient({
     });
   },
   clientState: {
-    defaults: {
-      winner: 0
-    },
     resolvers: {
-      Mutation: {
-        updatePlayerScore: (_, { score, player }, { cache }) => {
-          cache.writeData({ data: { [player]: score } });
-          return null;
-        },
-        calculateWinner: (_, { playerOne, playerTwo }, { cache }) => {
-          const scoreOne = cache.readQuery({
-            query: getScore(playerOne)
-          })[playerOne];
-          const scoreTwo = cache.readQuery({
-            query: getScore(playerTwo)
-          })[playerTwo];
-
-          if (scoreOne > scoreTwo) {
-            cache.writeData({ data: { winner: playerOne } });
-            return null;
-          } else {
-            cache.writeData({ data: { winner: playerTwo } });
-            return null;
-          }
+      User: {
+        score: (obj, args, context, info) => {
+          return obj.followers.totalCount + obj.repositories.totalCount;
         }
       }
     }
