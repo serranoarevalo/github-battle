@@ -9,12 +9,13 @@ const Card = styled.div`
   background-color: white;
   box-shadow: 0 20px 50px 0 rgba(0, 0, 0, 0.32);
   border-radius: 15px;
-  padding: 40px;
+  padding: 30px;
   width: 40%;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  border: 5px solid ${props => (props.winner ? "#2ecc71" : "transparent")};
 `;
 
 const Image = styled.img`
@@ -46,7 +47,17 @@ const B = styled.span`
 `;
 
 const PlayerPresenter = ({ data, loading, error, player }) => (
-  <Card>
+  <Card
+    winner={(() => {
+      if (!error && !loading && data.user) {
+        if (data.user.login === data.winner) {
+          return true;
+        }
+      } else {
+        return false;
+      }
+    })()}
+  >
     {(() => {
       if (loading) {
         return <Loading>⏰</Loading>;
