@@ -7,8 +7,8 @@ const updatePlayerScore = () => gql`
 `;
 
 const calculateWinner = () => gql`
-  mutation calculateWinner {
-    calculateWinner @client
+  mutation calculateWinner($playerOne: String!, $playerTwo: String!) {
+    calculateWinner(playerOne: $playerOne, playerTwo: $playerTwo) @client
   }
 `;
 

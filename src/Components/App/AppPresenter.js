@@ -15,10 +15,18 @@ const AppPresenter = ({
     <h1>Github Battle</h1>
     {playing ? (
       <React.Fragment>
-        <Player player={playerOne} gqlNumber={"playerOne"} />
-        <Player player={playerTwo} gqlNumber={"playerTwo"} />
+        <Player player={playerOne} />
+        <Player player={playerTwo} />
         <Mutation mutation={calculateWinner()}>
-          {calculateWinner => <button onClick={calculateWinner}>Fight!</button>}
+          {calculateWinner => (
+            <button
+              onClick={() =>
+                calculateWinner({ variables: { playerOne, playerTwo } })
+              }
+            >
+              Fight!
+            </button>
+          )}
         </Mutation>
       </React.Fragment>
     ) : (

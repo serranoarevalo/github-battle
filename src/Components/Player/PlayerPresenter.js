@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { Mutation } from "react-apollo";
 import { updatePlayerScore } from "mutations";
 
-const PlayerPresenter = ({ data, loading, error, gqlNumber }) =>
+const PlayerPresenter = ({ data, loading, error, player }) =>
   loading ? (
     "loading"
   ) : (
@@ -14,7 +14,7 @@ const PlayerPresenter = ({ data, loading, error, gqlNumber }) =>
             updatePlayerScore({
               variables: {
                 score: Math.floor(Math.random() * 10),
-                player: gqlNumber
+                player
               }
             })
           }
@@ -28,7 +28,7 @@ const PlayerPresenter = ({ data, loading, error, gqlNumber }) =>
 PlayerPresenter.propTypes = {
   loading: PropTypes.bool.isRequired,
   data: PropTypes.object.isRequired,
-  gqlNumber: PropTypes.string.isRequired
+  player: PropTypes.string.isRequired
 };
 
 export default PlayerPresenter;

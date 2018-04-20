@@ -10,7 +10,7 @@ class PlayerContainer extends Component {
     gqlNumber: PropTypes.string.isRequired
   };
   render() {
-    const { player, gqlNumber } = this.props;
+    const { player } = this.props;
     return (
       <Query query={getByUsername(player)}>
         {({ data, loading, error }) => (
@@ -18,7 +18,7 @@ class PlayerContainer extends Component {
             data={data}
             loading={loading}
             error={error}
-            gqlNumber={gqlNumber}
+            player={player}
           />
         )}
       </Query>
