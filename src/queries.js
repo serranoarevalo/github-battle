@@ -8,4 +8,10 @@ const getByUsername = username => gql`
   }
 `;
 
-export { getByUsername };
+const getScore = player => gql`
+query GetScore${player}{
+  ${player} @client
+} 
+`;
+
+export { getByUsername, getScore };
