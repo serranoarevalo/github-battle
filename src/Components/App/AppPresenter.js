@@ -11,10 +11,13 @@ injectGlobal`
   body{
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif
   }
+  *{
+    box-sizing:border-box;
+  }
 `;
 
 const App = styled.div`
-  background-image: linear-gradient(#d44455, #bd4b73);
+  background-image: linear-gradient(0deg, #b31569, #e63250);
   min-height: 100vh;
   padding-top: 100px;
 `;
@@ -93,6 +96,21 @@ const Button = styled.input`
   text-decoration: none;
 `;
 
+const PlayersContainer = styled.div`
+  max-width: 800px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  margin: 0 auto;
+  margin-top: 150px;
+`;
+
+const Players = styled.div`
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+`;
+
 const AppPresenter = ({
   playerOne,
   playerTwo,
@@ -103,9 +121,11 @@ const AppPresenter = ({
   <App>
     <Title>Github Battle</Title>
     {playing ? (
-      <React.Fragment>
-        <Player player={playerOne} />
-        <Player player={playerTwo} />
+      <PlayersContainer>
+        <Players>
+          <Player player={playerOne} />
+          <Player player={playerTwo} />
+        </Players>
         <Mutation mutation={calculateWinner()}>
           {calculateWinner => (
             <button
@@ -117,7 +137,7 @@ const AppPresenter = ({
             </button>
           )}
         </Mutation>
-      </React.Fragment>
+      </PlayersContainer>
     ) : (
       <Form onSubmit={startPlaying}>
         <div>
