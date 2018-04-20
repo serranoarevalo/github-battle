@@ -6,10 +6,10 @@ const updatePlayerScore = () => gql`
   }
 `;
 
-const calculateWinner = () => gql`
-  mutation calculateWinner($playerOne: String!, $playerTwo: String!) {
-    calculateWinner(playerOne: $playerOne, playerTwo: $playerTwo) @client
+const pickWinner = () => gql`
+  mutation pickWinner($playerOne: String!, $playerTwo: String!) {
+    pickWinner(playerOne: $playerOne, playerTwo: $playerTwo) @client
   }
 `;
 
-export { updatePlayerScore, calculateWinner };
+export { updatePlayerScore, pickWinner };

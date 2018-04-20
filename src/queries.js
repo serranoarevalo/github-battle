@@ -15,13 +15,17 @@ const getByUsername = username => gql`
       }
       score @client
     }
+    winner @client
   }
 `;
 
-const getWinner = () => gql`
+const getScore = user => gql`
   {
-    winner
+    user(login: "${user}"){
+      score
+      login
+    }
   }
 `;
 
-export { getByUsername, getWinner };
+export { getByUsername, getScore };
