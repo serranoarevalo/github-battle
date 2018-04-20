@@ -6,4 +6,10 @@ const updatePlayerScore = () => gql`
   }
 `;
 
-export { updatePlayerScore };
+const calculateWinner = () => gql`
+  mutation calculateWinner {
+    calculateWinner @client
+  }
+`;
+
+export { updatePlayerScore, calculateWinner };

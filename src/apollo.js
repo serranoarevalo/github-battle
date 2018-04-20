@@ -22,12 +22,19 @@ const client = new ApolloClient({
           return null;
         },
         calculateWinner: (_, args, { cache }) => {
-          const scoreOne = cache.readQuery(getScore("playerOne"));
-          const scoreTwo = cache.readQuery(getScore("playerTwo"));
-          if (scoreOne > scoreTwo) {
+          const { playerOne } = cache.readQuery({
+            query: getScore("playerOne")
+          });
+          const { playerTwo } = cache.readQuery({
+            query: getScore("playerTwo")
+          });
+
+          if (playerOne > playerTwo) {
             cache.writeData({ data: { winner: 1 } });
+            return null;
           } else {
             cache.writeData({ data: { winner: 2 } });
+            return null;
           }
         }
       }

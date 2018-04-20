@@ -5,11 +5,12 @@ const getByUsername = username => gql`
     user(login: "${username}") {
       email
     }
+    winner @client
   }
 `;
 
 const getScore = player => gql`
-query GetScore${player}{
+{
   ${player} @client
 } 
 `;

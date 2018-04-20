@@ -1,5 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { Mutation } from "react-apollo";
+import { calculateWinner } from "mutations";
 import Player from "Components/Player";
 
 const AppPresenter = ({
@@ -13,8 +15,11 @@ const AppPresenter = ({
     <h1>Github Battle</h1>
     {playing ? (
       <React.Fragment>
-        <Player player={playerOne} />
-        <Player player={playerTwo} />
+        <Player player={playerOne} gqlNumber={"playerOne"} />
+        <Player player={playerTwo} gqlNumber={"playerTwo"} />
+        <Mutation mutation={calculateWinner()}>
+          {calculateWinner => <button onClick={calculateWinner}>Fight!</button>}
+        </Mutation>
       </React.Fragment>
     ) : (
       <form onSubmit={startPlaying}>
