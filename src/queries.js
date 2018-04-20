@@ -4,6 +4,7 @@ const getByUsername = username => gql`
   {
     user(login: "${username}") {
       email
+      login
     }
     winner @client
   }

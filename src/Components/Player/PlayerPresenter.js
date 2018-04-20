@@ -19,7 +19,7 @@ const PlayerPresenter = ({ data, loading, error, player }) =>
             })
           }
         >
-          {data.user.email}
+          {data.user.email} {data.winner === data.user.login && "I win!"}
         </button>
       )}
     </Mutation>
