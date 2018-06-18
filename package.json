@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "apollo-boost": "^0.1.4",
+    "gh-pages": "^1.1.0",
     "graphql": "^0.13.2",
     "graphql-tag": "^2.8.0",
     "prop-types": "^15.6.1",
@@ -17,8 +18,11 @@
   },
   "scripts": {
     "start": "react-scripts start",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
-  }
+  },
+  "homepage": "https://serranoarevalo.github.io/github-battle"
 }

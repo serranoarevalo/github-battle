@@ -1,7 +1,5 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Mutation } from "react-apollo";
-import { updatePlayerScore } from "mutations";
 import styled from "styled-components";
 
 const Card = styled.div`
@@ -25,7 +23,7 @@ const Image = styled.img`
   margin-bottom: 20px;
 `;
 
-const Loading = styled.span`
+const Span = styled.span`
   font-size: 30px;
 `;
 
@@ -46,44 +44,37 @@ const B = styled.span`
   color: black;
 `;
 
-const PlayerPresenter = ({ data, loading, error, player }) => (
-  <Card
-    winner={(() => {
-      if (!error && !loading && data.user) {
-        if (data.user.login === data.winner) {
-          return true;
-        }
-      } else {
-        return false;
-      }
-    })()}
-  >
-    {(() => {
-      if (loading) {
-        return <Loading>⏰</Loading>;
-      } else if (error) {
-        return <Loading>😞</Loading>;
-      } else {
-        const {
-          user: { avatarUrl, login, bio, followers, repositories }
-        } = data;
-        return (
-          <React.Fragment>
-            <Image src={avatarUrl} />
-            <Username>{login}</Username>
-            <Item>{bio}</Item>
-            <Item>
-              Followers: <B>{followers.totalCount}</B>
-            </Item>
-            <Item>
-              Repos: <B>{repositories.totalCount}</B>
-            </Item>
-          </React.Fragment>
-        );
-      }
-    })()}
-  </Card>
-);
+const PlayerPresenter = ({ data, loading, error }) => {
+  if (loading) {
+    return (
+      <Card>
+        <Span>⏰</Span>
+      </Card>
+    );
+  }
+  if (error) {
+    return (
+      <Card>
+        <Span>😞</Span>
+      </Card>
+    );
+  }
+  return (
+    <Card>
+      <React.Fragment>
+        <Image src={data.user.avatarUrl} />
+        <Username>{data.user.login}</Username>
+        <Item>{data.user.bio}</Item>
+        <Item>
+          Followers: <B>{data.user.followers.totalCount}</B>
+        </Item>
+        <Item>
+          Repos: <B>{data.user.repositories.totalCount}</B>
+        </Item>
+      </React.Fragment>
+    </Card>
+  );
+};
 
 PlayerPresenter.propTypes = {
   loading: PropTypes.bool.isRequired,
