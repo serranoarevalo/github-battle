@@ -1,7 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
 import Player from "Components/Player";
-import Fight from "Components/Fight";
 import styled, { injectGlobal } from "styled-components";
 import reset from "styled-reset";
 import { Button } from "Components/Shared";
@@ -95,7 +94,6 @@ const AppPresenter = ({
           <Player player={playerOne} />
           <Player player={playerTwo} />
         </Players>
-        <Fight playerOne={playerOne} playerTwo={playerTwo} />
       </PlayersContainer>
     ) : (
       <Form onSubmit={startPlaying}>
